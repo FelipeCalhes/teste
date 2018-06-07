@@ -32,6 +32,13 @@ router.post("/webhook/", function (req, res) {
 
   
   let query = "SELECT QUEST_TXT FROM WORKPLACE.QUESTIONS WHERE QUESTION = 1 AND LANG = \"PT_br\"";
+  let buttons = [
+    {
+      "type": "postback",
+      "title": "Help",
+      "payload": "Help_4"
+    }
+  ]
 
   con.query( query, function (err, result, fields) {
     if (err) {
@@ -48,7 +55,8 @@ router.post("/webhook/", function (req, res) {
       // Handle receipt of a message
       if (event.message && event.message.text) {
         fb.sendSenderAction(sender, fb.createSenderActionMarkSeen());
-        fb.sendTextMessage(sender, "teste" + text.replace("&", name ).substring(0, 200));
+        //fb.sendTextMessage(sender, "teste" + text.replace("&", name ).substring(0, 200));
+        fb.sendButtonsTemplate(sender, "teste" + text.replace("&", name ).substring(0, 200), buttons);
       }
     }
   });
