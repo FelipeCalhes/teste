@@ -42,15 +42,12 @@ module.exports = {
 
   "getDefaultSingleMember": function getDefaultSingleMember(id){
     let fields = this.getDefaultMemberFields();
-    console.log(fields);
     let data = [];
-    console.log(data);
     try{
-    common.getData(graphAPIUrl + id, common.createGetOptions(graphAPIUrl + id, fields), data);
+    return common.getData(graphAPIUrl + id, common.createGetOptions(graphAPIUrl + id, fields), data);
     }catch(err){
       console.log(err);
     }
-    console.log(data);
   },
 
   "getAllEvents": function getAllEvents(id, fields) {
