@@ -56,8 +56,8 @@ router.post("/webhook/", function (req, res) {
       // Handle receipt of a message
       if (event.message && event.message.text) {
         fb.sendSenderAction(sender, fb.createSenderActionMarkSeen());
-        //fb.sendTextMessage(sender, "teste" + text.replace("&", name ).substring(0, 200));
-        fb.sendButtonsTemplate(sender, text.replace("&", name ).substring(0, 200), buttons);
+        fb.sendTextMessage(sender, "teste" + text.replace("&", name ).substring(0, 200));
+        //fb.sendButtonsTemplate(sender, text.replace("&", name ).substring(0, 200), buttons);
       }
     }
   });
