@@ -18,6 +18,17 @@ router.get("/webhook/", function (req, res) {
 
 router.post("/webhook/", function (req, res) {
 
+  var con = mysql.createConnection({
+    host: process.env.SQL_HOST,
+    user: process.env.SQL_USER,
+    password: process.env.SQL_PASS
+  });
+  
+  con.connect(function(err) {
+    if (err) throw err;
+    console.log("Connected!");
+  });
+
   let messaging_events = req.body.entry[0].messaging;
 
   for (let i = 0; i < messaging_events.length; i++) {
