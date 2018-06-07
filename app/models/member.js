@@ -42,10 +42,7 @@ module.exports = {
   },
 
   "getDefaultSingleMember": function getDefaultSingleMember(id){
-    let fields;
-    if (fields.constructor !== Array) {
-      fields = this.getDefaultMemberFields();
-    }
+    let fields = this.getDefaultMemberFields();
     console.log(fields);
     let data = [];
     console.log(data);
