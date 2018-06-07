@@ -31,7 +31,7 @@ router.post("/webhook/", function (req, res) {
   });
 
   
-  let query = "SELECT QUEST_TXT FROM WORKPLACE.QUESTIONS WHERE QUESTION = 1 AND LANG = \"PT_br\"";
+  let query = "SELECT QUEST_TXT FROM WORKPLACE.QUESTIONS WHERE LANG = \"PT_br\"";
   let buttons = [
     {
       "type": "postback",
@@ -46,10 +46,10 @@ router.post("/webhook/", function (req, res) {
       throw err;
     }
     let text = result[0].QUEST_TXT;
-    console.log(text);
     let messaging_events = req.body.entry[0].messaging;
     for (let i = 0; i < messaging_events.length; i++) {
       let event = req.body.entry[0].messaging[i];
+      console.log(event);
       let sender = fb.createSenderFromId(event.sender.id);
       let userPromise = member.getDefaultSingleMember(event.sender.id);
       userPromise.then(function(result){
@@ -57,7 +57,6 @@ router.post("/webhook/", function (req, res) {
         // Handle receipt of a message
         if (event.message && event.message.text) {
           fb.sendSenderAction(sender, fb.createSenderActionMarkSeen());
-          //fb.sendTextMessage(sender, "teste" + text.replace("&", name ).substring(0, 200));
           fb.sendButtonsTemplate(sender, text.replace("&", name ).substring(0, 200), buttons);
         }
       })
