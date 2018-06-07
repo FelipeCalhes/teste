@@ -51,13 +51,16 @@ router.post("/webhook/", function (req, res) {
     for (let i = 0; i < messaging_events.length; i++) {
       let event = req.body.entry[0].messaging[i];
       let sender = fb.createSenderFromId(event.sender.id);
-      let name = member.getDefaultSingleMember(event.sender.id).name;
-      // Handle receipt of a message
-      if (event.message && event.message.text) {
-        fb.sendSenderAction(sender, fb.createSenderActionMarkSeen());
-        //fb.sendTextMessage(sender, "teste" + text.replace("&", name ).substring(0, 200));
-        fb.sendButtonsTemplate(sender, text.replace("&", name ).substring(0, 200), buttons);
-      }
+      let userPromise = member.getDefaultSingleMember(event.sender.id);
+      userPromise.then(function(result){
+        let name = result.name;
+        // Handle receipt of a message
+        if (event.message && event.message.text) {
+          fb.sendSenderAction(sender, fb.createSenderActionMarkSeen());
+          //fb.sendTextMessage(sender, "teste" + text.replace("&", name ).substring(0, 200));
+          fb.sendButtonsTemplate(sender, text.replace("&", name ).substring(0, 200), buttons);
+        }
+      })
     }
   });
 
