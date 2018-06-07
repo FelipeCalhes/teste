@@ -48,7 +48,6 @@ router.post("/webhook/", function (req, res) {
     let text = result[0].QUEST_TXT;
     let messaging_events = req.body.entry[0].messaging;
     for (let i = 0; i < messaging_events.length; i++) {
-      let event = req.body.entry[0].messaging[i];
       let sender = fb.createSenderFromId(event.sender.id);
       let userPromise = member.getDefaultSingleMember(event.sender.id);
       console.log(event.delivery.mids[0]);
