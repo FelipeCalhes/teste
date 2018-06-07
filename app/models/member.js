@@ -45,10 +45,16 @@ module.exports = {
     let fields;
     if (fields.constructor !== Array) {
       fields = this.getDefaultMemberFields();
-    }    
+    }
+    console.log(fields);
     let data = [];
-
-    return common.__getAllData(common.createGetOptions(graphAPIUrl + id, fields), data);
+    console.log(data);
+    try{
+    common.__getAllData(common.createGetOptions(graphAPIUrl + id, fields), data);
+    }catch(err){
+      console.log(err);
+    }
+    console.log(data);
   },
 
   "getAllEvents": function getAllEvents(id, fields) {
