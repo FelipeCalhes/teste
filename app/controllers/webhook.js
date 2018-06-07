@@ -17,7 +17,7 @@ router.get("/webhook/", function (req, res) {
 });
 
 router.post("/webhook/", function (req, res) {
-
+  res.sendStatus(200);
   var con = mysql.createConnection({
     host: process.env.SQL_HOST,
     user: process.env.SQL_USER,
