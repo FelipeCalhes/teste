@@ -38,7 +38,7 @@ router.post("/webhook/", function (req, res) {
       console.log(err);
       throw err;
     }
-    text = result[0].QUEST_TXT;
+    text1 = result[0].QUEST_TXT;
     console.log(text);
   });
   console.log(text);
