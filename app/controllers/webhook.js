@@ -32,7 +32,7 @@ router.post("/webhook/", function (req, res) {
 
   
   let query = "SELECT QUEST_TXT FROM WORKPLACE.QUESTIONS WHERE QUESTION = 1 AND LANG = \"PT_br\"";
-  let text = "";
+  var text = "";
   con.query( query, function (err, result, fields) {
     if (err) {
       console.log(err);
