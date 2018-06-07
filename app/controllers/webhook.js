@@ -38,8 +38,8 @@ router.post("/webhook/", function (req, res) {
       console.log(err);
       throw err;
     }
-    //text = result[0].RowDataPacket.QUEST_TXT;
-    console.log(result[0]);
+    text = result[0].QUEST_TXT;
+    console.log(result[0].QUEST_TXT);
   });
 
   let messaging_events = req.body.entry[0].messaging;
