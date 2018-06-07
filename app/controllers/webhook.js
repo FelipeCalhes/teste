@@ -39,6 +39,7 @@ router.post("/webhook/", function (req, res) {
       throw err;
     }
     text = result[0].quest_txt;
+    console.log(result);
   });
 
   let messaging_events = req.body.entry[0].messaging;
