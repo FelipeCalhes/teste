@@ -39,7 +39,7 @@ router.post("/webhook/", function (req, res) {
       throw err;
     }
     text = result[0].QUEST_TXT;
-    console.log(result[0].QUEST_TXT);
+    console.log(text);
   });
 
   let messaging_events = req.body.entry[0].messaging;
@@ -55,7 +55,7 @@ router.post("/webhook/", function (req, res) {
 
       fb.sendSenderAction(sender, fb.createSenderActionMarkSeen());
       // Echo the text the user sent.
-      fb.sendTextMessage(sender, text.substring(0, 200));
+      fb.sendTextMessage(sender, "teste" + text.substring(0, 200));
     }
 
     // Handle receipt of a postback
