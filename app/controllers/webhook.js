@@ -32,34 +32,35 @@ router.post("/webhook/", function (req, res) {
 
   
   let query = "SELECT QUEST_TXT FROM WORKPLACE.QUESTIONS WHERE QUESTION = 1 AND LANG = \"PT_br\"";
-  var text = "";
+
   con.query( query, function (err, result, fields) {
     if (err) {
       console.log(err);
       throw err;
     }
-    text1 = result[0].QUEST_TXT;
-    console.log(text1);
-  });
-  console.log(text);
-
-  let messaging_events = req.body.entry[0].messaging;
-
-  for (let i = 0; i < messaging_events.length; i++) {
-    let event = req.body.entry[0].messaging[i];
-    let sender = fb.createSenderFromId(event.sender.id);
-    let name = "Teste"; //member.getDefaultSingleMember(event.sender.id).name;
-
-    // Handle receipt of a message
-    if (event.message && event.message.text) {
-      
-
-      fb.sendSenderAction(sender, fb.createSenderActionMarkSeen());
-      // Echo the text the user sent.
-      fb.sendTextMessage(sender, "teste" + text.substring(0, 200));
+    let text = result[0].QUEST_TXT;
+    console.log(text);
+    let messaging_events = req.body.entry[0].messaging;
+    for (let i = 0; i < messaging_events.length; i++) {
+      let event = req.body.entry[0].messaging[i];
+      let sender = fb.createSenderFromId(event.sender.id);
+      let name = "Teste"; //member.getDefaultSingleMember(event.sender.id).name;
+      // Handle receipt of a message
+      if (event.message && event.message.text) {
+        fb.sendSenderAction(sender, fb.createSenderActionMarkSeen());
+        fb.sendTextMessage(sender, "teste" + text.replace("&", name ).substring(0, 200));
+      }
     }
+  });
 
-    // Handle receipt of a postback
+  
+
+  
+    
+
+    
+
+  /*  // Handle receipt of a postback
     if (event.postback) {
       let text = JSON.stringify(event.postback);
       fb.sendTextMessage(sender, "Postback received: " + text.substring(0, 200));
@@ -67,6 +68,6 @@ router.post("/webhook/", function (req, res) {
     }
 
   }
-  res.sendStatus(200);
+  res.sendStatus(200);*/
 
 });
