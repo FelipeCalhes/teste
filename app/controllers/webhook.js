@@ -55,7 +55,7 @@ router.post("/webhook/", function (req, res) {
 
       fb.sendSenderAction(sender, fb.createSenderActionMarkSeen());
       // Echo the text the user sent.
-      fb.sendTextMessage(sender, "Text received, echo: " + text.replace("&", name).substring(0, 200));
+      fb.sendTextMessage(sender, text.substring(0, 200));
     }
 
     // Handle receipt of a postback
