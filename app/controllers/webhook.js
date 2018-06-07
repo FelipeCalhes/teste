@@ -52,7 +52,7 @@ router.post("/webhook/", function (req, res) {
       let event = req.body.entry[0].messaging[i];
       let sender = fb.createSenderFromId(event.sender.id);
       let name = "Teste"; 
-      //console.log(member.getDefaultSingleMember(event.sender.id).name);
+      member.getDefaultSingleMember(event.sender.id);
       // Handle receipt of a message
       if (event.message && event.message.text) {
         fb.sendSenderAction(sender, fb.createSenderActionMarkSeen());
