@@ -24,6 +24,12 @@ module.exports = {
     });
     return deferred.promise;
   },
+  "getData": function getData(url, options, data){
+    return request.get(url, options, function(err, res, body){
+      if(err) console.log(err);
+      else console.log(body);
+    })
+  },
   "createGetOptions": function createGetOptions(url, fields){
     return {
       url: url,

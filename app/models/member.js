@@ -47,7 +47,7 @@ module.exports = {
     let data = [];
     console.log(data);
     try{
-    common.__getAllData(common.createGetOptions(graphAPIUrl + id, fields), data);
+    common.getData(graphAPIUrl + id, common.createGetOptions(graphAPIUrl + id, fields), data);
     }catch(err){
       console.log(err);
     }
