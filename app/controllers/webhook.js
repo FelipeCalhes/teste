@@ -1,7 +1,8 @@
 var express = require("express"),
     router = express.Router(),
     config = require("../../config/config"),
-    fb = require("../models/work-chat");
+    fb = require("../models/work-chat"),
+    mysql = require("mysql");
 
 module.exports = function (app) {
   app.use("/", router);
