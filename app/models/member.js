@@ -39,7 +39,17 @@ module.exports = {
     let members = [];
 
     return common.__getAllData(common.createGetOptions(url, fields), members);
-  }, 
+  },
+
+  "getDefaultSingleMember": function getDefaultSingleMember(id){
+    let fields;
+    if (fields.constructor !== Array) {
+      fields = this.getDefaultMemberFields();
+    }    
+    let data = [];
+
+    return common.__getAllData(common.createGetOptions(graphAPIUrl + id, fields), data);
+  },
 
   "getAllEvents": function getAllEvents(id, fields) {
     let url = graphAPIUrl + id + "/events";
