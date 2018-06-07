@@ -1,7 +1,8 @@
 var express = require("express"),
     router = express.Router(),
     config = require("../../config/config"),
-    fb = require("../models/work-chat");
+    fb = require("../models/work-chat"),
+    mysql = require("mysql");
 
 module.exports = function (app) {
   app.use("/", router);
@@ -18,6 +19,15 @@ router.get("/webhook/", function (req, res) {
 router.post("/webhook/", function (req, res) {
 
   let messaging_events = req.body.entry[0].messaging;
+  let con = mysql.createConnection({
+    host: process.env.SQL_HOST,
+    user: process.env.SQL_USER,
+    password: process.env.SQL_PASS
+  });
+  con.connect(function(err) {
+    if (err) throw err;
+    console.log("Connected!");
+  });
 
   for (let i = 0; i < messaging_events.length; i++) {
     let event = req.body.entry[0].messaging[i];
